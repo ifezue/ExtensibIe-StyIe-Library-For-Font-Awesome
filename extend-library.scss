@@ -1,0 +1,55 @@
+//Colors variables
+$c: null;
+$c: null;
+$color1: (); // technically, () is an empty list in Sass. But it's a way to instatiate empty variables in Sass. 
+$color2: ();
+$angle: (); 
+$deg1: ();
+$deg2: (); // variable for gradient stop
+
+//Color array that can be populated based on your project:
+$color: (
+  red: #F44336;
+  light-green: #8BC34A,
+  pink: #E91E63,
+  lime: #CDDC39,
+  queen-black: #616161,
+  deep-orange: #FF5722,
+  teal: #009688,
+  indigo: #3F51B5,
+  amber: #FFC107,
+  cyan: #00BCD4,
+  green: #4CAF50,
+  peach: #FFAB91;
+  cobalt: #2962FF,
+  sea-gree: #1DE9B6,
+  fuschia: #F50057,
+  mustard: #FFCA28,
+ ); 
+
+
+//Gradients
+//The choice to use 51% and 75% is mine(it makes for a subtle gradient). You can adjust these values to your taste, ofcourse 😛.
+
+@mixin gradient-($color1, $color2){
+  background: linear-gradient(141deg, $hot-pink 51%, $dark-white 75%);
+}
+
+@mixin gradient-x-($angle, $color1, $color2, $deg1, $deg2){
+  background: linear-gradient($angle, $hot-pink $deg1, $dark-white $deg2);
+}
+
+//@each directive automatically generates gradient classes from your color palette;
+@each $colors, $colors-tone in $color { 
+  @each $tone in $colors-tone{
+  .gr-#{$colors}{ 
+    background: linear-gradient(135deg, $tone 0%, lighten($tone, 50%) 100%);
+    }
+  }
+}
+
+//use this class to apply gradients to fa icons
+.clip{
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
